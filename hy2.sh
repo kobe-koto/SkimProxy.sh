@@ -146,17 +146,20 @@ else
 fi
 
 ### Generate config
-# Accept port argument or generate a random port
+# Accept port argument or use fixed port 52015
 if [ -z "$1" ] || [ "$1" = "auto" ]; then
-  port=$((RANDOM % 50000 + 10000))
+  port=52015  # 固定端口
 else
   port=$1
 fi
+
 # Make config folder for the spec port
 mkdir -p /opt/skim-hy2/$port
-# Generate password using openssl
-password=$(openssl rand -base64 16)
-# Self-sign cert
+
+# Set fixed password
+password="Aq112211!"  # 设置固定密码
+
+# 自签名证书
 cat <<EOF > /opt/skim-hy2/$port/openssl.conf
 [ req ]
 default_bits           = 1024
