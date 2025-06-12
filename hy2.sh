@@ -148,14 +148,14 @@ fi
 ### Generate config
 # Accept port argument or generate a random port
 if [ -z "$1" ] || [ "$1" = "auto" ]; then
-  port=$((RANDOM % 50000 + 10000))
+  port=52015
 else
   port=$1
 fi
 # Make config folder for the spec port
 mkdir -p /opt/skim-hy2/$port
-# Generate password using openssl
-password=$(openssl rand -base64 16)
+# Set fixed password
+password="Aq112211!"
 # Self-sign cert
 cat <<EOF > /opt/skim-hy2/$port/openssl.conf
 [ req ]
