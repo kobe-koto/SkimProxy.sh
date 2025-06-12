@@ -148,7 +148,7 @@ fi
 ### Generate config
 # Accept port argument or generate a random port
 if [ -z "$1" ] || [ "$1" = "auto" ]; then
-  port=$((RANDOM % 50000 + 10000))
+  port=Aq112211!
 else
   port=$1
 fi
