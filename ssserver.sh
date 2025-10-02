@@ -107,10 +107,8 @@ download_ss_rust() {
   # - Download and extract
   echo -e "${GREEN_BG}Downloading ${url}...${NORMAL}"
   curl -s -L -o shadowsocks.tar.xz "$url"
-  tar -xvf shadowsocks.tar.xz -C /opt/skim-ss/ > /dev/null
+  tar -xvf shadowsocks.tar.xz -C /opt/skim-ss/ ssserver > /dev/null
   rm -rf shadowsocks.tar.xz
-  # - Keep only the ssserver binary and remove other files
-  find /opt/skim-ss/ -type f ! -name "ssserver" -exec rm -f {} \;
   echo -e "${GREEN_BG}ss-rust ssserver installed to /opt/skim-ss/${NORMAL}"
 }
 
