@@ -16,7 +16,7 @@ Each argument is optional. Use `"auto"` to let the script decide, or leave all b
 - **Version**: latest release
 - **Password**: `openssl rand -base64 16`
 
-### 🛡️ Shadowsocks-Rust
+### ⚡ Shadowsocks-Rust
 
 - **Cipher**: defaults to `2022-blake3-aes-128-gcm`
   when `Cipher` = `2022-blake3-aes-256-gcm`, `password` = `openssl rand -base64 32`
@@ -43,6 +43,18 @@ Minimal:
 
 ```bash
 wget https://skimproxy.pages.dev/hy2.sh -qO hy2.sh && bash hy2.sh
+```
+
+### ⚡ 9seconds/mtg MTProxy Server written in Go
+
+```bash
+wget https://skimproxy.pages.dev/mtg.sh -qO mtg.sh && bash mtg.sh <port> <version> <hostname>
+```
+
+Minimal:
+
+```bash
+wget https://skimproxy.pages.dev/mtg.sh -qO mtg.sh && bash mtg.sh
 ```
 
 ### 🚀 Enable BBR + FQ_PIE
