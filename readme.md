@@ -6,9 +6,9 @@ SkimProxy.sh is a minimalistic Bash-based toolchain to deploy proxy servers with
 
 - Only tested on **Debian 12** (Minimal), **Alpine Linux** Latest (Virtual).
 - Assumes a standard Linux environment with `bash`, `wget`, and basic utilities available.
-- Assumes a functional human brain or at least an 8b LLM.
+- Assumes a functional human brain or at least an 8b LLM agent.
 
-## 📦 Usage
+## Usage
 
 Each argument is optional. Use `"auto"` to let the script decide, or leave all blank to use full defaults as below:
 
@@ -16,7 +16,7 @@ Each argument is optional. Use `"auto"` to let the script decide, or leave all b
 - **Version**: latest release
 - **Password**: `openssl rand -base64 16`
 
-### ⚡ Shadowsocks-Rust
+### Shadowsocks-Rust
 
 - **Cipher**: defaults to `2022-blake3-aes-128-gcm`
   when `Cipher` = `2022-blake3-aes-256-gcm`, `password` = `openssl rand -base64 32`
@@ -33,7 +33,7 @@ Minimal:
 wget https://skimproxy.pages.dev/ssserver.sh -qO ssserver.sh && bash ssserver.sh
 ```
 
-### ⚡ Hysteria 2
+### Hysteria 2
 
 ```bash
 wget https://skimproxy.pages.dev/hy2.sh -qO hy2.sh && bash hy2.sh <port> <version> <hostname>
@@ -45,7 +45,7 @@ Minimal:
 wget https://skimproxy.pages.dev/hy2.sh -qO hy2.sh && bash hy2.sh
 ```
 
-### ⚡ 9seconds/mtg MTProxy Server written in Go
+### 9seconds/mtg MTProxy Server written in Go
 
 ```bash
 wget https://skimproxy.pages.dev/mtg.sh -qO mtg.sh && bash mtg.sh <port> <version> <hostname>
@@ -57,7 +57,6 @@ Minimal:
 wget https://skimproxy.pages.dev/mtg.sh -qO mtg.sh && bash mtg.sh
 ```
 
-### 🚀 Enable BBR + FQ_PIE
 ### Port Hopping with nftables
 
 *umm, take care of port range overlapping yourself...*
@@ -66,6 +65,7 @@ wget https://skimproxy.pages.dev/mtg.sh -qO mtg.sh && bash mtg.sh
 wget https://skimproxy.pages.dev/porthop.sh -qO porthop.sh && bash porthop.sh <DEST_SERVER_PORT> <PORT_RANGE>
 ```
 
+### Enable BBR + FQ_PIE
 
 ```bash
 echo "net.core.default_qdisc=fq_pie" >> /etc/sysctl.conf && \
