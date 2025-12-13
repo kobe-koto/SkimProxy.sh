@@ -19,6 +19,25 @@ case "$cpu_arch" in
   *) echo -e "${RED_BG}Unsupported architecture: $cpu_arch${NORMAL}"; exit 1 ;;
 esac
 
+# Install GNU grep if BusyBox ver grep found
+is_busybox_grep() {
+  grep --version 2>&1 | grep -q BusyBox
+}
+if is_busybox_grep; then
+  echo -e "${GREEN_BG}[Requirements] BusyBox grep detected. Installing GNU grep.${NORMAL}"
+
+  if command -v apk >/dev/null; then
+    apk add grep
+  elif command -v apt-get >/dev/null; then
+    apt-get update && apt-get install -y grep
+  elif command -v pacman >/dev/null; then
+    pacman -Sy --noconfirm grep
+  else
+    echo -e "${RED_BG}[ERROR] Unsupported package manager.${NORMAL} Please install GNU grep manually."
+    exit 1
+  fi
+fi
+
 urlencode() {
     local LANG=C
     local input
@@ -58,25 +77,6 @@ install_packages() {
     exit 1
   fi
 }
-
-# Install GNU grep if BusyBox ver grep found
-is_busybox_grep() {
-  grep --version 2>&1 | grep -q BusyBox
-}
-if is_busybox_grep; then
-  echo -e "${GREEN_BG}[Requirements] BusyBox grep detected. Installing GNU grep.${NORMAL}"
-
-  if command -v apk >/dev/null; then
-    apk add grep
-  elif command -v apt-get >/dev/null; then
-    apt-get update && apt-get install -y grep
-  elif command -v pacman >/dev/null; then
-    pacman -Sy --noconfirm grep
-  else
-    echo -e "${RED_BG}[ERROR] Unsupported package manager.${NORMAL} Please install GNU grep manually."
-    exit 1
-  fi
-fi
 
 # Install required tools if missing
 for tool in curl jq tar openssl xz; do
