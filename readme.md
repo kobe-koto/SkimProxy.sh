@@ -58,6 +58,14 @@ wget https://skimproxy.pages.dev/mtg.sh -qO mtg.sh && bash mtg.sh
 ```
 
 ### 🚀 Enable BBR + FQ_PIE
+### Port Hopping with nftables
+
+*umm, take care of port range overlapping yourself...*
+
+```bash
+wget https://skimproxy.pages.dev/porthop.sh -qO porthop.sh && bash porthop.sh <DEST_SERVER_PORT> <PORT_RANGE>
+```
+
 
 ```bash
 echo "net.core.default_qdisc=fq_pie" >> /etc/sysctl.conf && \
