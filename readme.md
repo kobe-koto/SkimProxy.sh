@@ -61,6 +61,10 @@ wget https://skimproxy.pages.dev/mtg.sh -qO mtg.sh && bash mtg.sh
 
 *umm, take care of port range overlapping yourself...*
 
+PORT_RANGE: nft port range, e.g. `10000-60000`
+
+DEST_SERVER_PORT: the actual server port to forward to, e.g. `443`
+
 ```bash
 wget https://skimproxy.pages.dev/porthop.sh -qO porthop.sh && bash porthop.sh <DEST_SERVER_PORT> <PORT_RANGE>
 ```
