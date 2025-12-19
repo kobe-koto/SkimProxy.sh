@@ -58,10 +58,10 @@ else
   exit 1
 fi
 
-# we assume the /etc/nftables.conf include the drop-in confs
-mkdir -p /etc/nftables/porthopping/
-cat <<EOF > /etc/nftables/porthopping/porthopping_${DEST_SERVER_PORT}.nft
-table inet porthopping_${DEST_SERVER_PORT} {
+# generate porthop nftables rules
+mkdir -p /etc/skim-porthop/nft/
+cat <<EOF > /etc/skim-porthop/nft/${DEST_SERVER_PORT}.nft
+table inet skim-porthop_${DEST_SERVER_PORT} {
   chain prerouting {
     type nat hook prerouting priority dstnat; policy accept;
     udp dport $PORT_RANGE counter redirect to :$DEST_SERVER_PORT
@@ -69,6 +69,11 @@ table inet porthopping_${DEST_SERVER_PORT} {
 }
 EOF
 
+# detect if the "include "/etc/skim-porthop/nft/*.nft" exists in /etc/nftables.conf, if not add it
+if ! grep -q 'include "/etc/skim-porthop/nft/\*.nft"' /etc/nftables.conf; then
+  echo 'include "/etc/skim-porthop/nft/*.nft"' >> /etc/nftables.conf
+fi
+
 # load the new nftables rules
-nft -f /etc/nftables/porthopping/porthopping_${DEST_SERVER_PORT}.nft
+nft -f /etc/skim-porthop/nft/${DEST_SERVER_PORT}.nft
 echo -e "${GREEN_BG}[Success] Port hopping rules added for destination port ${DEST_SERVER_PORT} in range ${PORT_RANGE}.${NORMAL}"
